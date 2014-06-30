@@ -2,7 +2,7 @@ class Tzbuddy.Query
   constructor: (@text, @zones) ->
   date: ->
     zone = @zone()
-    date = @text.replace(zone, '')
+    date = @text.replace(new RegExp(zone, 'ig'), '')
     Date.create(date)
   zone: ->
     allZones = @zones.all()

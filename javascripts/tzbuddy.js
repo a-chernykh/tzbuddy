@@ -1,14 +1,14 @@
 (function() {
   var zones;
 
-  timezoneJS.timezone.zoneFileBasePath = '/tz';
+  timezoneJS.timezone.zoneFileBasePath = 'tz';
 
   timezoneJS.timezone.init();
 
   zones = null;
 
-  $.get('/cldr/supplemental/metaZones.json', function(metaZones) {
-    return $.get('/cldr/main/en/timeZoneNames.json', function(timeZoneNames) {
+  $.get('cldr/supplemental/metaZones.json', function(metaZones) {
+    return $.get('cldr/main/en/timeZoneNames.json', function(timeZoneNames) {
       return zones = new Tzbuddy.Zones(metaZones, timeZoneNames);
     });
   });

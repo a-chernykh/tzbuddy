@@ -16,10 +16,13 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       { pattern: 'http://localhost:4567/javascripts/all.js', watched: true, included: true, served: true },
-      { pattern: 'http://localhost:4567/javascripts/tests.js', watched: true, included: true, served: true },
       { pattern: 'source/javascripts/**/*', watched: true, included: false, served: false },
-      { pattern: 'source/fixtures/*.json', watched: true, included: false, served: true },
-      { pattern: 'source/tz/**/*', watched: true, included: false, served: true }
+      { pattern: 'source/tz/**/*', watched: true, included: false, served: true },
+      { pattern: 'spec/fixtures/*.json', watched: true, included: false, served: true },
+      "bower_components/jasmine-jquery/lib/jasmine-jquery.js",
+      { pattern: 'spec/javascripts/tests/helpers.coffee', watched: true, included: true, served: true },
+      { pattern: 'spec/javascripts/tests/query_test.coffee', watched: true, included: true, served: true },
+      { pattern: 'spec/javascripts/tests/zones_test.coffee', watched: true, included: true, served: true }
     ],
 
 
@@ -32,7 +35,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-    
+        '**/*.coffee': ['coffee']
     },
 
 

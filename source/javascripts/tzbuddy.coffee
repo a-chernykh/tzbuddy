@@ -17,6 +17,8 @@ $ ->
       tzDate = new timezoneJS.Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), zone)
       local = Date.create(tzDate.getTime())
       $('#result').text local.format()
+    else
+      $('#result').text ''
 
   ).debounce 100
   $('#tzinput').on 'keyup', process

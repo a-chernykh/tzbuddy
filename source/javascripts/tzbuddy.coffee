@@ -1,10 +1,10 @@
-timezoneJS.timezone.zoneFileBasePath = '/tz'
+timezoneJS.timezone.zoneFileBasePath = 'tz'
 timezoneJS.timezone.init()
 
 zones = null
 
-$.get '/cldr/supplemental/metaZones.json', (metaZones) ->
-  $.get '/cldr/main/en/timeZoneNames.json', (timeZoneNames) ->
+$.get 'cldr/supplemental/metaZones.json', (metaZones) ->
+  $.get 'cldr/main/en/timeZoneNames.json', (timeZoneNames) ->
     zones = new Tzbuddy.Zones metaZones, timeZoneNames
 
 $ ->

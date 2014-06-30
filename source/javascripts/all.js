@@ -1,2 +1,5 @@
+//= require jquery
+//= require sugar
 //= require timezone-js
-//= require_tree .
+//= require all/bare
+//= require_tree ./all

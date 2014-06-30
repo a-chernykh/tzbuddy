@@ -1,9 +1,5 @@
 describe 'Zones', ->
-  beforeEach ->
-    jasmine.getJSONFixtures().fixturesPath = '/base/source/fixtures/'
-    metaZones = getJSONFixture('metaZones.json')
-    timeZoneNames = getJSONFixture('timeZoneNames.json')
-    @zones = new Tzbuddy.Zones metaZones, timeZoneNames
+  beforeEach -> @zones = Tzbuddy.Test.getZones()
 
   describe 'all', ->
     it 'includes PST', -> expect(@zones.all()).toContain 'PST'

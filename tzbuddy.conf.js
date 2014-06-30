@@ -15,10 +15,11 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      { pattern: 'source/javascripts/**/*', watched: true, included: false, served: false },
       { pattern: 'http://localhost:4567/javascripts/all.js', watched: true, included: true, served: true },
       { pattern: 'http://localhost:4567/javascripts/tests.js', watched: true, included: true, served: true },
-      { pattern: 'source/fixtures/*.json', watched: true, included: false, served: true }
+      { pattern: 'source/javascripts/**/*', watched: true, included: false, served: false },
+      { pattern: 'source/fixtures/*.json', watched: true, included: false, served: true },
+      { pattern: 'source/tz/**/*', watched: true, included: false, served: true }
     ],
 
 

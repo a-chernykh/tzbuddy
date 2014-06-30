@@ -1,14 +1,22 @@
-# timezoneJS.timezone.zoneFileBasePath = 'http://localhost:4567/tz'
-# timezoneJS.timezone.init()
+timezoneJS.timezone.zoneFileBasePath = '/tz'
+timezoneJS.timezone.init()
 
-# $ ->
-#   $('#tzinput').on 'change', ->
-#     query = new Query $('#tzinput').val()
-#     dt1 = new timezoneJS.Date query.date(), query.zone()
-#     dt1.setTimezone 'America/Los_Angeles'
-#     console.log dt1
+zones = null
 
 $.get '/cldr/supplemental/metaZones.json', (metaZones) ->
   $.get '/cldr/main/en/timeZoneNames.json', (timeZoneNames) ->
     zones = new Tzbuddy.Zones metaZones, timeZoneNames
-    console.log zones.get('PST')
+
+$ ->
+  process = (->
+    text = $('#tzinput').val()
+    if text.length > 0
+      query = new Tzbuddy.Query text, zones
+      date = query.date()
+      zone = zones.get(query.zone())
+      tzDate = new timezoneJS.Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), zone)
+      local = Date.create(tzDate.getTime())
+      $('#result').text local.format()
+
+  ).debounce 100
+  $('#tzinput').on 'keyup', process

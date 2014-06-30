@@ -1,4 +1,9 @@
 class Tzbuddy.Query
-  constructor: (@text) ->
-  date: -> '2014.06.29 21:20:35'
-  zone: -> 'Europe/Moscow'
+  constructor: (@text, @zones) ->
+  date: ->
+    zone = @zone()
+    date = @text.replace(zone, '')
+    Date.create(date)
+  zone: ->
+    allZones = @zones.all()
+    allZones.findAll((zone) => @text.toLowerCase().indexOf(zone.toLowerCase()) != -1)[0]

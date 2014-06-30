@@ -1,0 +1,21 @@
+{
+  "name": "tzbuddy",
+  "version": "0.0.0",
+  "authors": [
+    "Andrey Chernih <andrey.chernih@gmail.com>"
+  ],
+  "license": "Apache 2.0",
+  "homepage": "http://github.com/andreychernih/tzbuddy",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "timezone-js": "~0.4.11"
+  }
+}

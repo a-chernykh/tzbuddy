@@ -14,10 +14,13 @@ class Tzbuddy.Converter
   convert: (input, toZone) ->
     query = new Tzbuddy.Query input, Converter._zones
     date = query.date()
-    fromZone = Converter._zones.get(query.zone())
-    tzDate = new timezoneJS.Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), fromZone)
-    if toZone
-      toZone = Converter._zones.get(toZone)
-      new timezoneJS.Date(tzDate, toZone)
+    if date
+      fromZone = Converter._zones.get(query.zone())
+      tzDate = new timezoneJS.Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), fromZone)
+      if toZone
+        toZone = Converter._zones.get(toZone)
+        new timezoneJS.Date(tzDate, toZone)
+      else
+        tzDate
     else
-      tzDate
+      null

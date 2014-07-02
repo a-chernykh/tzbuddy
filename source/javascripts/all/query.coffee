@@ -3,7 +3,8 @@ class Tzbuddy.Query
   date: ->
     zone = @zone()
     date = @text.replace(new RegExp(zone, 'ig'), '')
-    Date.create(date)
+    date = Date.create(date)
+    if date.toString() == 'Invalid Date' then null else date
   zone: ->
     allZones = @zones.all()
     allZones.findAll((zone) => @text.toLowerCase().indexOf(zone.toLowerCase()) != -1)[0]

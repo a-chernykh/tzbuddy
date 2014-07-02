@@ -44,6 +44,10 @@ describe 'Query', ->
       expect(query.date().getHours()).toBe 10
       expect(query.date().getMinutes()).toBe 0
 
+    it 'returns null for incorrect date', ->
+      query = new Tzbuddy.Query 'some incorrect date', @zones
+      expect(query.date()).toBe null
+
   describe 'zone parsing', ->
     it 'parses Tuesday 7/1 at 10am PST', ->
       query = new Tzbuddy.Query 'Tuesday 7/1 at 10am PST', @zones

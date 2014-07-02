@@ -28,3 +28,8 @@ describe 'Converter', ->
       expect(local.getMonth()).toBe 6
       expect(local.getHours()).toBe 14
       expect(local.getMinutes()).toBe 0
+
+    it 'returns null for invalid dates', ->
+      converter = new Tzbuddy.Converter
+      local = converter.convert 'some invalid date', 'PDT'
+      expect(local).toBe null

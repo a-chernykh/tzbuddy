@@ -4,8 +4,12 @@ Tzbuddy.Converter.init 'tz', 'cldr', ->
       text = $('#tzinput').val()
       if text.length > 0
         converter = new Tzbuddy.Converter
-        local = Date.create(converter.convert(text).getTime())
-        $('#result').text local.format()
+        converted = converter.convert(text)
+        if converted
+          local = Date.create(converted.getTime())
+          $('#result').text local.format()
+        else
+          $('#result').text 'Invalid Date'
       else
         $('#result').text ''
 

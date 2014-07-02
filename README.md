@@ -26,6 +26,22 @@ unzip -d source/cldr source/cldr/json.zip
 rm -f source/cldr/json.zip
 ```
 
+## Usage
+
+It should be asynchronously initialized with JSON paths first:
+
+```javascript
+Tzbuddy.Converter.init('tz', 'cldr', function() {
+  alert('I am ready');
+
+  converter = new Tzbuddy.Converter;
+  converter.convert('10am PST this Tuesday', 'Moscow Time'); // returns timezoneJS.Date object in Moscow timezone
+  alert(Date.create(converted.getTime()).format()); // prints "July 1, 2014 9:00pm"
+});
+```
+
+Where `tz` and `cldr` are paths to `tzdata` and `cldr` on your webserver.
+
 [tzdata]: http://www.iana.org/time-zones
 [timezone-js]: https://github.com/mde/timezone-js
 [cldr]: http://cldr.unicode.org/

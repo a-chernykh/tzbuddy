@@ -42,6 +42,29 @@ Tzbuddy.Converter.init('tz', 'cldr', function() {
 
 Where `tz` and `cldr` are paths to `tzdata` and `cldr` on your webserver.
 
+## Tests
+
+You should start [middleman] first:
+
+```bash
+bundle exec middleman server
+```
+
+Unit tests are handled by [karma]:
+
+```bash
+karma start karma.conf.js
+```
+
+End to end testing handled by [nightwatch]:
+
+```bash
+./nightwatch
+```
+
 [tzdata]: http://www.iana.org/time-zones
 [timezone-js]: https://github.com/mde/timezone-js
 [cldr]: http://cldr.unicode.org/
+[middleman]: http://middlemanapp.com/
+[karma]: http://karma-runner.github.io
+[nightwatch]: http://nightwatchjs.org

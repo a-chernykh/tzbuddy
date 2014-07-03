@@ -1,31 +1,53 @@
-/* line 1, /Users/akhkharu/projects/javascript/tzbuddy/source/stylesheets/base.scss */
-body {
-  background: #d4d4d4 url("../images/background.png");
-  text-align: center;
-  font-family: Helvetica, Arial, sans-serif; }
-
 /* line 7, /Users/akhkharu/projects/javascript/tzbuddy/source/stylesheets/base.scss */
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  padding: 50px;
+  color: black; }
+
+/* line 13, /Users/akhkharu/projects/javascript/tzbuddy/source/stylesheets/base.scss */
+a {
+  color: grey; }
+
+/* line 17, /Users/akhkharu/projects/javascript/tzbuddy/source/stylesheets/base.scss */
 form {
-  margin: 200px;
-  width: auto;
-  text-align: left; }
-  /* line 12, /Users/akhkharu/projects/javascript/tzbuddy/source/stylesheets/base.scss */
+  float: left;
+  width: 70%;
+  text-align: left;
+  min-width: 300px; }
+  @media screen and (min-width: 769px) {
+    /* line 17, /Users/akhkharu/projects/javascript/tzbuddy/source/stylesheets/base.scss */
+    form {
+      border-right: 1px solid grey;
+      height: 400px; } }
+  /* line 28, /Users/akhkharu/projects/javascript/tzbuddy/source/stylesheets/base.scss */
   form input#tzinput {
-    width: 100%;
-    line-height: 50px;
-    font-size: 40px;
+    width: 90%;
+    line-height: 40px;
+    font-size: 30px;
     border: 1px solid grey;
     padding: 10px; }
-  /* line 20, /Users/akhkharu/projects/javascript/tzbuddy/source/stylesheets/base.scss */
-  form ul {
+  /* line 36, /Users/akhkharu/projects/javascript/tzbuddy/source/stylesheets/base.scss */
+  form #result {
+    margin-top: 10px;
+    font-size: 40px; }
+
+/* line 42, /Users/akhkharu/projects/javascript/tzbuddy/source/stylesheets/base.scss */
+.samples {
+  width: 25%;
+  float: left; }
+  @media screen and (min-width: 769px) {
+    /* line 42, /Users/akhkharu/projects/javascript/tzbuddy/source/stylesheets/base.scss */
+    .samples {
+      margin-left: 20px; } }
+  /* line 50, /Users/akhkharu/projects/javascript/tzbuddy/source/stylesheets/base.scss */
+  .samples h2 {
+    margin-top: 0px; }
+  /* line 54, /Users/akhkharu/projects/javascript/tzbuddy/source/stylesheets/base.scss */
+  .samples ul {
     list-style: none;
     margin: 0px;
     padding: 0px; }
-    /* line 25, /Users/akhkharu/projects/javascript/tzbuddy/source/stylesheets/base.scss */
-    form ul li {
-      padding: 5px 10px;
-      margin-bottom: 4px;
-      background-color: white; }
-  /* line 32, /Users/akhkharu/projects/javascript/tzbuddy/source/stylesheets/base.scss */
-  form #result {
-    font-size: 40px; }
+    /* line 59, /Users/akhkharu/projects/javascript/tzbuddy/source/stylesheets/base.scss */
+    .samples ul li {
+      padding: 2px 0px;
+      margin-bottom: 4px; }

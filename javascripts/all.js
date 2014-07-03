@@ -10389,27 +10389,104 @@ g=a.indexOf(c.charAt(n++)),h=a.indexOf(c.charAt(n++)),l=a.indexOf(c.charAt(n++))
 
 }).call(this);
 (function() {
+  Tzbuddy.Converter = (function() {
+    function Converter() {}
+
+    Converter._zones = null;
+
+    Converter.getZones = function() {
+      return this._zones;
+    };
+
+    Converter.init = function(tzdataPath, cldrPath, readyCallback) {
+      var metaZonesReq, timeZoneNamesReq;
+      timezoneJS.timezone.zoneFileBasePath = tzdataPath;
+      timezoneJS.timezone.init();
+      metaZonesReq = $.get("" + cldrPath + "/supplemental/metaZones.json");
+      timeZoneNamesReq = $.get("" + cldrPath + "/main/en/timeZoneNames.json");
+      return $.when(metaZonesReq, timeZoneNamesReq).then(function(metaZonesJson, timeZoneNamesJson) {
+        Converter._zones = new Tzbuddy.Zones(metaZonesJson[0], timeZoneNamesJson[0]);
+        return readyCallback();
+      });
+    };
+
+    Converter.prototype.convert = function(input, toZone) {
+      var date, fromZone, query, tzDate;
+      query = new Tzbuddy.Query(input, Converter._zones);
+      date = query.getDate();
+      if (date) {
+        fromZone = Converter._zones.get(query.getZone());
+        tzDate = new timezoneJS.Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), fromZone);
+        if (toZone == null) {
+          toZone = query.getTargetZone();
+        }
+        if (toZone) {
+          toZone = Converter._zones.get(toZone);
+          return new timezoneJS.Date(tzDate, toZone);
+        } else {
+          return new timezoneJS.Date(tzDate.getTime());
+        }
+      } else {
+        return null;
+      }
+    };
+
+    return Converter;
+
+  })();
+
+}).call(this);
+(function() {
   Tzbuddy.Query = (function() {
     function Query(text, zones) {
       this.text = text;
       this.zones = zones;
+      this.allZones = this.zones.all();
+      this.lowerText = this.text.toLowerCase();
+      this._parse();
     }
 
-    Query.prototype.date = function() {
-      var date, zone;
-      zone = this.zone();
-      date = this.text.replace(new RegExp(zone, 'ig'), '');
-      return Date.create(date);
+    Query.prototype.getDate = function() {
+      return this.date;
     };
 
-    Query.prototype.zone = function() {
-      var allZones;
-      allZones = this.zones.all();
-      return allZones.findAll((function(_this) {
+    Query.prototype.getZone = function() {
+      return this.zone;
+    };
+
+    Query.prototype.getTargetZone = function() {
+      return this.targetZone;
+    };
+
+    Query.prototype._parse = function() {
+      var date;
+      this.targetZone = this._parseTargetZone();
+      if (this.targetZone) {
+        this.lowerText = this.lowerText.replace(new RegExp('to ' + this.targetZone, 'gi'), '');
+      }
+      this.zone = this.allZones.findAll((function(_this) {
         return function(zone) {
-          return _this.text.toLowerCase().indexOf(zone.toLowerCase()) !== -1;
+          return _this.lowerText.indexOf(zone.toLowerCase()) !== -1;
         };
       })(this))[0];
+      this.lowerText = this.lowerText.replace(new RegExp(this.zone, 'gi'), '');
+      date = Date.create(this.lowerText);
+      return this.date = date.toString() === 'Invalid Date' ? null : date;
+    };
+
+    Query.prototype._parseTargetZone = function() {
+      var possibleZone, possibleZoneEnd, possibleZoneStart, toStart;
+      toStart = this.lowerText.indexOf('to ');
+      if (toStart !== -1) {
+        possibleZoneStart = toStart + 3;
+        possibleZoneEnd = this.lowerText.length;
+        possibleZone = this.lowerText.substring(possibleZoneStart, possibleZoneEnd);
+        return this.allZones.findAll((function(_this) {
+          return function(zone) {
+            return possibleZone.indexOf(zone.toLowerCase()) !== -1;
+          };
+        })(this))[0];
+      }
     };
 
     return Query;

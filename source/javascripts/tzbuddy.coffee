@@ -14,3 +14,7 @@ Tzbuddy.Converter.init 'tz', 'cldr', ->
 
     ).debounce 100
     $('#tzinput').on 'keyup', process
+    $('a').on 'click', (e) ->
+      e.preventDefault()
+      $('#tzinput').val $(this).text()
+      $('#tzinput').trigger 'keyup'

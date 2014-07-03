@@ -6,8 +6,7 @@ Tzbuddy.Converter.init 'tz', 'cldr', ->
         converter = new Tzbuddy.Converter
         converted = converter.convert(text)
         if converted
-          local = Date.create(converted.getTime())
-          $('#result').text local.format()
+          $('#result').text converted.toDateString() + ', ' + converted.toTimeString()
         else
           $('#result').text 'Invalid Date'
       else

@@ -29,6 +29,24 @@ describe 'Converter', ->
       expect(local.getHours()).toBe 14
       expect(local.getMinutes()).toBe 0
 
+    it 'converts 07/05/2014 10pm Moscow Time to PST', ->
+      converter = new Tzbuddy.Converter
+      pst = converter.convert '07/05/2014 10pm Moscow Time to PST'
+      expect(pst.getFullYear()).toBe 2014
+      expect(pst.getDate()).toBe 5
+      expect(pst.getMonth()).toBe 6
+      expect(pst.getHours()).toBe 11
+      expect(pst.getMinutes()).toBe 0
+
+    it 'converts 10pm 07/03 Moscow Time to Pacific Time', ->
+      converter = new Tzbuddy.Converter
+      pst = converter.convert '10pm 07/03 Moscow Time to Pacific Time'
+      expect(pst.getFullYear()).toBe 2014
+      expect(pst.getDate()).toBe 3
+      expect(pst.getMonth()).toBe 6
+      expect(pst.getHours()).toBe 11
+      expect(pst.getMinutes()).toBe 0
+
     it 'returns null for invalid dates', ->
       converter = new Tzbuddy.Converter
       local = converter.convert 'some invalid date', 'PDT'

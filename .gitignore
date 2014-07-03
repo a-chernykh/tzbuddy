@@ -22,3 +22,5 @@ node_modules
 
 source/tz
 source/cldr
+
+spec/end2end/reports

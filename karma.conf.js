@@ -18,11 +18,10 @@ module.exports = function(config) {
       { pattern: 'http://localhost:4567/javascripts/all.js', watched: true, included: true, served: true },
       { pattern: 'source/javascripts/**/*', watched: true, included: false, served: false },
       { pattern: 'source/tz/**/*', watched: true, included: false, served: true },
+      { pattern: 'source/cldr/**/*', watched: true, included: false, served: true },
       { pattern: 'spec/fixtures/*.json', watched: true, included: false, served: true },
       "bower_components/jasmine-jquery/lib/jasmine-jquery.js",
-      { pattern: 'spec/javascripts/tests/helpers.coffee', watched: true, included: true, served: true },
-      { pattern: 'spec/javascripts/tests/query_test.coffee', watched: true, included: true, served: true },
-      { pattern: 'spec/javascripts/tests/zones_test.coffee', watched: true, included: true, served: true }
+      { pattern: 'spec/javascripts/tests/*.coffee', watched: true, included: true, served: true }
     ],
 
 

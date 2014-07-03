@@ -1,6 +1,6 @@
 # tzbuddy
 
-tzbuddy is a small utility which helps to convert any date and time in any timezone into your local time. You can paste some date like `10am PST this Tuesday` and it will return the time in your local timezone: `July 1, 2014 9:00pm`. Time conversion is a simple task using server which has an access to [tzdata], but tzbuddy does it with pure JavaScript.
+[tzbuddy] is a small utility which helps to convert any date and time in any timezone into your local time. You can paste some date like `10am PST this Tuesday` and it will return the time in your local timezone: `July 1, 2014 9:00pm`. Time conversion is a simple task using server which has an access to [tzdata], but [tzbuddy] does it with pure JavaScript.
 
 ## Bootstrap
 
@@ -62,6 +62,7 @@ End to end testing handled by [nightwatch]:
 ./nightwatch
 ```
 
+[tzbuddy]: http://andrey.chernih.me/tzbuddy/
 [tzdata]: http://www.iana.org/time-zones
 [timezone-js]: https://github.com/mde/timezone-js
 [cldr]: http://cldr.unicode.org/
